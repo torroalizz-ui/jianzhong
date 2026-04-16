@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <!-- Background rounded square -->
+  <rect width="512" height="512" rx="108" fill="#3b82f6"/>
+  
+  <!-- Clock face -->
+  <circle cx="256" cy="270" r="155" fill="white" opacity="0.95"/>
+  
+  <!-- Clock center dot -->
+  <circle cx="256" cy="270" r="10" fill="#1e293b"/>
+  
+  <!-- Hour hand (pointing ~10 o'clock) -->
+  <line x1="256" y1="270" x2="210" y2="190" stroke="#1e293b" stroke-width="14" stroke-linecap="round"/>
+  
+  <!-- Minute hand (pointing ~2 o'clock) -->
+  <line x1="256" y1="270" x2="330" y2="210" stroke="#1e293b" stroke-width="9" stroke-linecap="round"/>
+  
+  <!-- Hour markers -->
+  <circle cx="256" cy="130" r="8" fill="#94a3b8"/> <!-- 12 -->
+  <circle cx="376" cy="270" r="8" fill="#94a3b8"/> <!-- 3 -->
+  <circle cx="256" cy="410" r="8" fill="#94a3b8"/> <!-- 6 -->
+  <circle cx="136" cy="270" r="8" fill="#94a3b8"/> <!-- 9 -->
+  
+  <!-- Small bell on top -->
+  <circle cx="210" cy="108" r="22" fill="white" opacity="0.9"/>
+  <circle cx="302" cy="108" r="22" fill="white" opacity="0.9"/>
+  <line x1="210" y1="86" x2="302" y2="86" stroke="white" stroke-width="8" stroke-linecap="round" opacity="0.9"/>
+</svg>
