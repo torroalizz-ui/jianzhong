@@ -4,11 +4,11 @@ on:
   push:
     tags:
       - 'v*'
-  workflow_dispatch:        # 允许手动触发
+  workflow_dispatch:
 
 jobs:
   build-linux-arm64:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
 
     steps:
       - name: Checkout
@@ -17,24 +17,22 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
           cache: 'npm'
 
       - name: Install dependencies
         run: npm ci
 
-      - name: Build renderer
+      - name: Build renderer (skip type-check)
         run: npx vite build
 
       - name: Install cross-compilation toolchain
         run: |
           sudo dpkg --add-architecture arm64
-          # 将默认源限制为 amd64，避免 arm64 找不到源报错
           sudo sed -i 's/^deb /deb [arch=amd64] /' /etc/apt/sources.list
-          # 添加 arm64 的 ports 源
-          echo "deb [arch=arm64] http://ports.ubuntu.com/ $(lsb_release -cs) main restricted universe multiverse" | sudo tee /etc/apt/sources.list.d/arm64.list
-          echo "deb [arch=arm64] http://ports.ubuntu.com/ $(lsb_release -cs)-updates main restricted universe multiverse" | sudo tee -a /etc/apt/sources.list.d/arm64.list
-          sudo apt-get update
+          echo "deb [arch=arm64] http://ports.ubuntu.com/ jammy main restricted universe multiverse" | sudo tee /etc/apt/sources.list.d/arm64.list
+          echo "deb [arch=arm64] http://ports.ubuntu.com/ jammy-updates main restricted universe multiverse" | sudo tee -a /etc/apt/sources.list.d/arm64.list
+          sudo apt-get update || true
           sudo apt-get install -y gcc-aarch64-linux-gnu g++-aarch64-linux-gnu
 
       - name: Build deb (arm64)
