@@ -2,6 +2,10 @@
   "name": "jianzhong",
   "version": "1.0.0",
   "description": "简钟 - 简约精致的桌面事件提醒应用",
+  "author": {
+    "name": "torroalizz-ui",
+    "email": "torroalizz-ui@users.noreply.github.com"
+  },
   "main": "electron/main.js",
   "scripts": {
     "dev": "vite",
